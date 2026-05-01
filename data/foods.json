@@ -1,0 +1,28 @@
+{
+  "foods": [
+    {
+      "id": "meteor_berries",
+      "name": "Meteor berries",
+      "unlockedAt": "Hatchling",
+      "effects": { "hunger": -38, "affection": 10, "energy": 8, "curiosity": 1.2, "confidence": 0.2, "exposure": "cool" }
+    },
+    {
+      "id": "smoked_sun_meat",
+      "name": "Smoked sun-meat",
+      "unlockedAt": "Hatchling",
+      "effects": { "hunger": -42, "affection": 9, "energy": 12, "curiosity": 0.2, "confidence": 1.5, "exposure": "warm" }
+    },
+    {
+      "id": "fern_sprouts",
+      "name": "Crunchy fern sprouts",
+      "unlockedAt": "Juvenile",
+      "effects": { "hunger": -34, "affection": 8, "energy": 9, "curiosity": 1.0, "confidence": 0.4, "exposure": "nature" }
+    },
+    {
+      "id": "moon_sugar",
+      "name": "Moon sugar",
+      "unlockedAt": "Juvenile",
+      "effects": { "hunger": -26, "affection": 13, "energy": 16, "curiosity": 1.6, "confidence": 0.1, "exposure": "creative" }
+    }
+  ]
+}

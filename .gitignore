@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.log
+
+.build/
+dist/
+simulations/out/
+
+*.app/

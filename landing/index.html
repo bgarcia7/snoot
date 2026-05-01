@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snoot for macOS</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #07131a;
+      --deep: #050911;
+      --moss: #8fb77a;
+      --gold: #dec17b;
+      --cream: #fff7e6;
+      --muted: #bad0b4;
+      --button-edge: #17251a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: ui-rounded, "Avenir Next", "SF Pro Rounded", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--deep);
+      color: var(--cream);
+    }
+    main {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 64px 18px 120px;
+      background:
+        radial-gradient(circle at 50% 37%, #21382f 0 14%, #10231c 34%, transparent 58%),
+        radial-gradient(circle at 16% 72%, #24392780 0 12%, transparent 34%),
+        linear-gradient(180deg, #081320 0%, #09141b 52%, #050911 100%);
+      isolation: isolate;
+    }
+    main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, #f4d68a 0 1px, transparent 2px),
+        radial-gradient(circle, #99c98a 0 1px, transparent 2px);
+      background-size: 170px 190px, 230px 260px;
+      background-position: 20px 40px, 110px 140px;
+      opacity: .36;
+      z-index: -2;
+    }
+    main::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 170px;
+      background:
+        radial-gradient(ellipse at 50% 100%, #365035 0 8%, transparent 48%),
+        linear-gradient(180deg, transparent, #050911 72%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .hero {
+      width: min(720px, 100%);
+      display: grid;
+      justify-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+    .mark {
+      width: min(132px, 34vw);
+      image-rendering: pixelated;
+      filter: invert(1) sepia(.2) saturate(.8) drop-shadow(0 16px 28px #0008);
+      opacity: .92;
+    }
+    .kicker {
+      margin: 2px 0 0;
+      color: #e7c98b;
+      font-family: "Avenir Next Demi Bold", ui-rounded, sans-serif;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-shadow: 0 7px 18px #0008;
+    }
+    h1 {
+      margin: 0;
+      font-family: "Avenir Next Heavy", "Arial Rounded MT Bold", ui-rounded, sans-serif;
+      font-size: 116px;
+      font-weight: 900;
+      line-height: .86;
+      letter-spacing: 0;
+      text-shadow: 0 14px 34px #0009;
+    }
+    p {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+    .hero-copy {
+      display: grid;
+      gap: 11px;
+      max-width: 610px;
+    }
+    .hero-copy p {
+      max-width: none;
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+      margin-bottom: 2px;
+    }
+    a { color: inherit; }
+    .button {
+      position: relative;
+      display: inline-grid;
+      grid-template-rows: auto auto;
+      justify-items: center;
+      align-content: center;
+      justify-content: center;
+      row-gap: 5px;
+      min-width: 304px;
+      min-height: 66px;
+      padding: 9px 24px 11px;
+      border: 3px solid var(--cream);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, #fff8e7 0%, #efd28c 58%, #a9cc82 100%);
+      color: #142414;
+      font-family: "Avenir Next Heavy", "Arial Rounded MT Bold", ui-rounded, sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow:
+        0 0 0 3px var(--button-edge),
+        0 18px 42px #0008,
+        inset 0 -5px 0 #9d7d45;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 0 3px var(--button-edge),
+        0 22px 48px #0009,
+        inset 0 -5px 0 #9d7d45;
+    }
+    .button:active {
+      transform: translateY(1px);
+      box-shadow:
+        0 0 0 3px var(--button-edge),
+        0 12px 30px #0008,
+        inset 0 -3px 0 #9d7d45;
+    }
+    .cta-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      white-space: nowrap;
+    }
+    .cta-mark {
+      width: 29px;
+      height: 29px;
+      object-fit: contain;
+      image-rendering: pixelated;
+      filter: brightness(0) saturate(100%) invert(10%) sepia(12%) saturate(2216%) hue-rotate(63deg) brightness(88%) contrast(91%);
+      flex: 0 0 auto;
+    }
+    .cta-main {
+      font-size: 18px;
+      line-height: 1;
+    }
+    .cta-sub {
+      color: #365334;
+      font-family: "Avenir Next Demi Bold", ui-rounded, sans-serif;
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1;
+      text-align: center;
+    }
+    .cta-note {
+      width: 100%;
+      max-width: none;
+      color: #d5dea9;
+      font-family: "Avenir Next Demi Bold", ui-rounded, sans-serif;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.35;
+      text-align: center;
+    }
+    .page-footer {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 4;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      pointer-events: auto;
+    }
+    .made-by {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      color: #d5dea9;
+      font-family: "Avenir Next Demi Bold", ui-rounded, sans-serif;
+      font-size: 13px;
+      font-weight: 750;
+      text-align: center;
+      text-shadow: 0 5px 14px #000c;
+    }
+    .made-by a {
+      color: #fff7e6;
+      text-decoration: none;
+    }
+    .snoot-walker {
+      position: absolute;
+      left: -290px;
+      bottom: 30px;
+      width: min(280px, 45vw);
+      aspect-ratio: 340 / 300;
+      image-rendering: pixelated;
+      animation: roam 23s linear infinite;
+      opacity: .96;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .walk-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      image-rendering: pixelated;
+      animation-duration: .72s;
+      animation-timing-function: steps(1, end);
+      animation-iteration-count: infinite;
+    }
+    .frame-a { animation-name: frame-a; }
+    .frame-b { animation-name: frame-b; }
+    .frame-c { animation-name: frame-c; }
+    .frame-d { animation-name: frame-d; }
+    @keyframes roam {
+      0% { transform: translateX(-8vw) scaleX(1); }
+      48% { transform: translateX(calc(100vw + 330px)) scaleX(1); }
+      50% { transform: translateX(calc(100vw + 330px)) scaleX(-1); }
+      98% { transform: translateX(-8vw) scaleX(-1); }
+      100% { transform: translateX(-8vw) scaleX(1); }
+    }
+    @keyframes frame-a { 0%, 24.99% { opacity: 1; } 25%, 100% { opacity: 0; } }
+    @keyframes frame-b { 0%, 24.99% { opacity: 0; } 25%, 49.99% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    @keyframes frame-c { 0%, 49.99% { opacity: 0; } 50%, 74.99% { opacity: 1; } 75%, 100% { opacity: 0; } }
+    @keyframes frame-d { 0%, 74.99% { opacity: 0; } 75%, 100% { opacity: 1; } }
+    @media (max-width: 640px) {
+      main { padding-top: 52px; }
+      .mark { width: 108px; }
+      .kicker { font-size: 12px; }
+      h1 { font-size: 74px; }
+      p { font-size: 16px; }
+      .hero-copy { gap: 10px; }
+      .button { min-width: 286px; min-height: 62px; }
+      .page-footer { bottom: 12px; gap: 8px; }
+      .made-by { font-size: 12px; }
+      .snoot-walker { bottom: 20px; width: min(226px, 58vw); transform-origin: center; }
+    }
+    @media (max-width: 380px) {
+      h1 { font-size: 64px; }
+      .button { width: 100%; min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <img class="mark" src="snoot-mark.png" alt="Snoot pixel dragon icon">
+      <p class="kicker">A cozy desktop dragon for macOS</p>
+      <h1>Snoot</h1>
+      <div class="actions">
+        <a class="button" href="../dist/Snoot.zip">
+          <span class="cta-top">
+            <img class="cta-mark" src="snoot-mark.png" alt="">
+            <span class="cta-main">Hatch Snoot</span>
+          </span>
+          <span class="cta-sub">Download for macOS</span>
+        </a>
+      </div>
+      <div class="hero-copy">
+        <p>Snoot wanders around your desktop and slowly picks up personality from the apps it spends time around.</p>
+      </div>
+    </section>
+    <div class="snoot-walker" aria-hidden="true">
+      <img class="walk-frame frame-a" src="snoot-walk-0.png" alt="">
+      <img class="walk-frame frame-b" src="snoot-walk-1.png" alt="">
+      <img class="walk-frame frame-c" src="snoot-walk-2.png" alt="">
+      <img class="walk-frame frame-d" src="snoot-walk-3.png" alt="">
+    </div>
+    <footer class="page-footer">
+      <p class="cta-note">Tiny chirps, desktop wandering, and one very small burrow.</p>
+      <p class="made-by">made with &lt;3 by <a href="https://twitter.com/__bcg__">@__bcg__</a></p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "growthDays": {
+    "hatchling": [0, 3],
+    "juvenile": [4, 14],
+    "adolescent": [15, 30],
+    "adult": [31, 60],
+    "elder": [61, null]
+  },
+  "traitRules": [
+    {
+      "id": "ember_crest",
+      "when": { "warm": 0.22 },
+      "changes": ["crest warms", "body shifts coral", "prefers sun-meat"]
+    },
+    {
+      "id": "moss_marks",
+      "when": { "nature": 0.20 },
+      "changes": ["green body markings", "calmer idle", "prefers fern sprouts"]
+    },
+    {
+      "id": "moon_freckles",
+      "when": { "dark": 0.20 },
+      "changes": ["violet shade", "glowing freckles", "night palette"]
+    },
+    {
+      "id": "studio_wings",
+      "when": { "creative": 0.20 },
+      "changes": ["wing membrane color shifts", "more playful particles"]
+    },
+    {
+      "id": "focus_horns",
+      "when": { "code": 0.22 },
+      "changes": ["sharper horns", "more confident stance"]
+    }
+  ],
+  "simulationMilestones": [0, 3, 7, 14, 30, 60, 180]
+}

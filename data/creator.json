@@ -1,0 +1,345 @@
+{
+  "name": "Pocket Dragon Creator Lab",
+  "sourceSaveFile": "~/Library/Application Support/Pocket Dragon/creature.json",
+  "description": "Creator schema for live-testing every creature save attribute from the menu and burrow interface. Read-only fields are included so the creator surface tracks the full save contract.",
+  "attributes": [
+    {
+      "key": "schema",
+      "type": "integer",
+      "editable": false,
+      "notes": "Save-file schema version."
+    },
+    {
+      "key": "species",
+      "type": "string",
+      "editable": false,
+      "values": ["dragon"],
+      "notes": "Future creature types will plug in here."
+    },
+    {
+      "key": "name",
+      "type": "string",
+      "editable": true,
+      "control": "Rename..."
+    },
+    {
+      "key": "birthTime",
+      "type": "timestamp",
+      "editable": true,
+      "control": "Age / Stage",
+      "presets": [
+        { "label": "Hatchling, day 0", "ageDays": 0 },
+        { "label": "Juvenile, day 7", "ageDays": 7 },
+        { "label": "Adolescent, day 21", "ageDays": 21 },
+        { "label": "Adult, day 45", "ageDays": 45 },
+        { "label": "Elder, day 90", "ageDays": 90 }
+      ]
+    },
+    {
+      "key": "lifeStage",
+      "type": "string",
+      "editable": false,
+      "derivedFrom": "birthTime",
+      "values": ["Hatchling", "Juvenile", "Adolescent", "Adult", "Elder"]
+    },
+    {
+      "key": "favoriteFood",
+      "type": "string",
+      "editable": true,
+      "control": "Favorite Food",
+      "values": ["meteor berries", "smoked sun-meat", "crunchy fern sprouts", "moon sugar", "starfruit cubes"]
+    },
+    {
+      "key": "favoriteColor",
+      "type": "string",
+      "editable": true,
+      "control": "Favorite Color / Palette",
+      "values": ["sky blue", "ember coral", "moss green", "moonlit violet", "carnival bright"]
+    },
+    {
+      "key": "lastAppName",
+      "type": "string",
+      "editable": true,
+      "control": "Last App",
+      "values": ["Cursor", "Figma", "Terminal", "Safari", "BambuStudio", "Notes"]
+    },
+    {
+      "key": "hunger",
+      "type": "number",
+      "editable": true,
+      "control": "Stats > hunger",
+      "range": [0, 100],
+      "presets": [0, 25, 50, 75, 100]
+    },
+    {
+      "key": "affection",
+      "type": "number",
+      "editable": true,
+      "control": "Stats > affection",
+      "range": [0, 100],
+      "presets": [0, 25, 50, 75, 100]
+    },
+    {
+      "key": "energy",
+      "type": "number",
+      "editable": true,
+      "control": "Stats > energy",
+      "range": [0, 100],
+      "presets": [0, 25, 50, 75, 100]
+    },
+    {
+      "key": "curiosity",
+      "type": "number",
+      "editable": true,
+      "control": "Stats > curiosity",
+      "range": [0, 100],
+      "presets": [0, 25, 50, 75, 100]
+    },
+    {
+      "key": "confidence",
+      "type": "number",
+      "editable": true,
+      "control": "Stats > confidence",
+      "range": [0, 100],
+      "presets": [0, 25, 50, 75, 100]
+    },
+    {
+      "key": "levelProgress",
+      "type": "number",
+      "editable": false,
+      "derivedFrom": ["birthTime", "affection", "curiosity", "confidence"],
+      "range": [0, 1]
+    },
+    {
+      "key": "exposure.warm",
+      "type": "number",
+      "editable": true,
+      "control": "Growth Exposures > warm",
+      "range": [0, 1],
+      "presets": [0, 0.15, 0.35, 0.65, 1]
+    },
+    {
+      "key": "exposure.cool",
+      "type": "number",
+      "editable": true,
+      "control": "Growth Exposures > cool",
+      "range": [0, 1],
+      "presets": [0, 0.15, 0.35, 0.65, 1]
+    },
+    {
+      "key": "exposure.nature",
+      "type": "number",
+      "editable": true,
+      "control": "Growth Exposures > nature",
+      "range": [0, 1],
+      "presets": [0, 0.15, 0.35, 0.65, 1]
+    },
+    {
+      "key": "exposure.dark",
+      "type": "number",
+      "editable": true,
+      "control": "Growth Exposures > dark",
+      "range": [0, 1],
+      "presets": [0, 0.15, 0.35, 0.65, 1]
+    },
+    {
+      "key": "exposure.creative",
+      "type": "number",
+      "editable": true,
+      "control": "Growth Exposures > creative",
+      "range": [0, 1],
+      "presets": [0, 0.15, 0.35, 0.65, 1]
+    },
+    {
+      "key": "exposure.code",
+      "type": "number",
+      "editable": true,
+      "control": "Growth Exposures > code",
+      "range": [0, 1],
+      "presets": [0, 0.15, 0.35, 0.65, 1]
+    },
+    {
+      "key": "parts.bodyLength",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > body len",
+      "range": [0, 1],
+      "notes": "Short to long body proportions."
+    },
+    {
+      "key": "parts.bodyHeight",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > body ht",
+      "range": [0, 1],
+      "notes": "Slim to chunky body proportions."
+    },
+    {
+      "key": "parts.headSize",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > head",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.snoutLength",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > snout",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.hornLength",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > horns",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.neckLength",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > neck",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.wingSize",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > wings",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.tailLength",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > tail",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.legLength",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > legs",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.clawLength",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > claws",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.crestSize",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > crest",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.eyeSize",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > eyes",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.bellySize",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > belly",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.cheekSize",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > cheeks",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.patternDensity",
+      "type": "number",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > pattern amt",
+      "range": [0, 1]
+    },
+    {
+      "key": "parts.patternColorCount",
+      "type": "integer",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > pat colors",
+      "range": [1, 3],
+      "values": [1, 2, 3]
+    },
+    {
+      "key": "style.hornType",
+      "type": "string",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > horn type",
+      "values": ["natural", "very straight", "corkscrew"]
+    },
+    {
+      "key": "style.eyeShape",
+      "type": "string",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > eye mood",
+      "values": ["friendly", "neutral", "menacing"]
+    },
+    {
+      "key": "style.stance",
+      "type": "string",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > stance",
+      "values": ["four legs", "two legs"]
+    },
+    {
+      "key": "style.tailTip",
+      "type": "string",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > tail tip",
+      "values": ["neutral tip", "fire tip", "horned tip"]
+    },
+    {
+      "key": "style.wingType",
+      "type": "string",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > wings",
+      "values": ["no wings", "normal wings", "large wings", "water wings"]
+    },
+    {
+      "key": "style.patternType",
+      "type": "string",
+      "editable": true,
+      "control": "Burrow Creator Lab > Body Parts > pattern",
+      "values": ["dots", "stripes", "bands", "freckles", "skull mark"]
+    },
+    {
+      "key": "home.x",
+      "type": "number",
+      "editable": true,
+      "control": "Drag burrow horizontally",
+      "notes": "Persisted desktop burrow origin."
+    },
+    {
+      "key": "home.y",
+      "type": "number",
+      "editable": true,
+      "control": "Drag burrow vertically",
+      "notes": "Persisted desktop burrow origin."
+    },
+    {
+      "key": "home.custom",
+      "type": "boolean",
+      "editable": true,
+      "control": "Set automatically after dragging the burrow"
+    }
+  ],
+  "testProfiles": [
+    "engineer",
+    "designer",
+    "night-owl",
+    "balanced"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "species": "dragon",
+  "lifeStages": [
+    { "name": "Hatchling", "minDay": 0, "maxDay": 3 },
+    { "name": "Juvenile", "minDay": 4, "maxDay": 14 },
+    { "name": "Adolescent", "minDay": 15, "maxDay": 30 },
+    { "name": "Adult", "minDay": 31, "maxDay": 60 },
+    { "name": "Elder", "minDay": 61, "maxDay": null }
+  ],
+  "bodyParts": {
+    "head": ["round", "long-snouted", "noble", "foxlike"],
+    "horns": ["nubs", "short", "swept", "branching"],
+    "crest": ["ember tuft", "sail", "moss ridge", "moon spines"],
+    "torso": ["bean", "stout", "sleek", "long"],
+    "legs": ["stubby", "sure-footed", "clawed", "springy"],
+    "wings": ["tiny", "rounded", "long", "glider"],
+    "tail": ["curl", "spade", "plume", "barbed"],
+    "markings": ["cheeks", "spots", "stripes", "glowing freckles"]
+  },
+  "exposureTraits": {
+    "warm": {
+      "palette": "ember coral",
+      "visuals": ["warmer scales", "brighter crest", "sun-meat preference"]
+    },
+    "cool": {
+      "palette": "sky blue",
+      "visuals": ["icy highlights", "pale horns", "meteor berry preference"]
+    },
+    "nature": {
+      "palette": "moss green",
+      "visuals": ["green markings", "leaflike horn tint", "fern sprout preference"]
+    },
+    "dark": {
+      "palette": "moonlit violet",
+      "visuals": ["violet scales", "tiny glow freckles", "night-dragon posture"]
+    },
+    "creative": {
+      "palette": "carnival bright",
+      "visuals": ["wing tint shifts", "extra markings", "playful idle poses"]
+    },
+    "code": {
+      "palette": "focused teal",
+      "visuals": ["sleeker stance", "sharper horns", "confident walking"]
+    }
+  }
+}
