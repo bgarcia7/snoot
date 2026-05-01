@@ -14,6 +14,7 @@ ICON_SOURCE="$ROOT/assets/snoot-icon-imagegen-source.png"
 
 mkdir -p dist
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
+cp "$ROOT/data/favorite-build.json" "$APP/Contents/Resources/FavoriteBuild.json"
 
 cat >"$INFO_PLIST" <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
