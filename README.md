@@ -80,16 +80,36 @@ Prepare a static GitHub Pages bundle:
 tools/prepare_github_pages.sh
 ```
 
-Publish it to a GitHub repo after authenticating `gh`:
+Prepare the notarized bundle locally:
 
 ```sh
-gh auth login -h github.com
 SNOOT_SIGN_IDENTITY="Developer ID Application: Winible Inc. (X4XM4MMJZ8)" \
 SNOOT_NOTARY_PROFILE="snoot-notary" \
-tools/publish_github_pages.sh snoot public
+tools/publish_github_pages.sh
 ```
 
-That publishes `github-pages/index.html` plus the app zip to the repo's `gh-pages` branch and serves it from `https://YOUR_GITHUB_USER.github.io/snoot/`.
+The generated Pages site lives in `dist/github-pages/`.
+
+GitHub Pages publishing now happens from a GitHub Actions workflow in the same repository. Each push to `main` will:
+
+1. run the notarized package build
+2. refresh `dist/github-pages/`
+3. upload that folder as the Pages artifact
+4. deploy the artifact to GitHub Pages
+
+That keeps the project as a single repository with no nested Pages checkout and no generated site files committed to `main`.
+
+In the repository settings, set GitHub Pages to deploy from `GitHub Actions`.
+
+For CI notarization, add these GitHub repository secrets before enabling the workflow:
+
+- `BUILD_CERTIFICATE_BASE64`: base64-encoded Developer ID Application `.p12`
+- `P12_PASSWORD`: password for that `.p12`
+- `APPLE_ID`: Apple ID used for notarization
+- `APPLE_APP_SPECIFIC_PASSWORD`: app-specific password for that Apple ID
+- `APPLE_TEAM_ID`: Apple Developer team ID
+
+The workflow uses the same signing identity string already used locally: `Developer ID Application: Winible Inc. (X4XM4MMJZ8)`.
 
 Run a growth simulation:
 

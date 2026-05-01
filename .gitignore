@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 *.log
+*.env
+*BUILD_CERTIFICATE.p12
 
 .build/
 dist/
