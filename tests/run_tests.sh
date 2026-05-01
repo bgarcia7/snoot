@@ -4,6 +4,12 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
+if command -v rg >/dev/null 2>&1; then
+  SEARCH=(rg -q)
+else
+  SEARCH=(grep -Eq)
+fi
+
 plutil -lint "Snoot.app/Contents/Info.plist" >/dev/null
 test -x "Snoot.app/Contents/MacOS/Snoot"
 test -s "Snoot.app/Contents/Resources/Snoot.icns"
@@ -18,21 +24,21 @@ test -s "dist/github-pages/Snoot.zip"
 test -s "dist/github-pages/snoot-mark.png"
 test -s "assets/snoot-icon-template.png"
 
-rg -q 'URLByAppendingPathComponent:@"Snoot"' PocketDragonNative.m
-rg -q 'image.template = YES' PocketDragonNative.m
-rg -q 'showOnboardingIfNeeded' PocketDragonNative.m
-rg -q 'exportShareSnapshot' PocketDragonNative.m
-rg -q 'exportShareImage' PocketDragonNative.m
-rg -q 'copyShareImage' PocketDragonNative.m
-rg -q 'exportLandingSpritesToDirectory' PocketDragonNative.m
-rg -q 'stylePanelButton' PocketDragonNative.m
-rg -q 'recentApps' PocketDragonNative.m
-rg -q 'NSMaxY\(self.screenFrame\) \+ 12\.0' PocketDragonNative.m
-rg -q 'Snoot' landing/index.html
-rg -q '../dist/Snoot.zip' landing/index.html
-rg -q 'snoot-walker' landing/index.html
-rg -q 'href="Snoot.zip"' dist/github-pages/index.html
-if rg -q '../dist/Snoot.zip' dist/github-pages/index.html; then
+"${SEARCH[@]}" 'URLByAppendingPathComponent:@"Snoot"' PocketDragonNative.m
+"${SEARCH[@]}" 'image.template = YES' PocketDragonNative.m
+"${SEARCH[@]}" 'showOnboardingIfNeeded' PocketDragonNative.m
+"${SEARCH[@]}" 'exportShareSnapshot' PocketDragonNative.m
+"${SEARCH[@]}" 'exportShareImage' PocketDragonNative.m
+"${SEARCH[@]}" 'copyShareImage' PocketDragonNative.m
+"${SEARCH[@]}" 'exportLandingSpritesToDirectory' PocketDragonNative.m
+"${SEARCH[@]}" 'stylePanelButton' PocketDragonNative.m
+"${SEARCH[@]}" 'recentApps' PocketDragonNative.m
+"${SEARCH[@]}" 'NSMaxY\(self.screenFrame\) \+ 12\.0' PocketDragonNative.m
+"${SEARCH[@]}" 'Snoot' landing/index.html
+"${SEARCH[@]}" '../dist/Snoot.zip' landing/index.html
+"${SEARCH[@]}" 'snoot-walker' landing/index.html
+"${SEARCH[@]}" 'href="Snoot.zip"' dist/github-pages/index.html
+if "${SEARCH[@]}" '../dist/Snoot.zip' dist/github-pages/index.html; then
   echo "dist/github-pages/index.html should use local Snoot.zip link" >&2
   exit 1
 fi
