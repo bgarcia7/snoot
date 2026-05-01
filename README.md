@@ -54,7 +54,7 @@ tools/package_snoot.sh
 For public distribution without the macOS malware-verification warning, package with a Developer ID Application certificate and a saved notarytool keychain profile:
 
 ```sh
-SNOOT_SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" \
+SNOOT_SIGN_IDENTITY="Developer ID Application: Winible Inc. (X4XM4MMJZ8)" \
 SNOOT_NOTARY_PROFILE="snoot-notary" \
 tools/package_snoot.sh
 ```
@@ -84,10 +84,12 @@ Publish it to a GitHub repo after authenticating `gh`:
 
 ```sh
 gh auth login -h github.com
+SNOOT_SIGN_IDENTITY="Developer ID Application: Winible Inc. (X4XM4MMJZ8)" \
+SNOOT_NOTARY_PROFILE="snoot-notary" \
 tools/publish_github_pages.sh snoot public
 ```
 
-That publishes `github-pages/index.html` plus the app zip to `https://YOUR_GITHUB_USER.github.io/snoot/`.
+That publishes `github-pages/index.html` plus the app zip to the repo's `gh-pages` branch and serves it from `https://YOUR_GITHUB_USER.github.io/snoot/`.
 
 Run a growth simulation:
 
