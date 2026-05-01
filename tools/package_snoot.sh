@@ -10,6 +10,7 @@ INFO_PLIST="$APP/Contents/Info.plist"
 ZIP="dist/Snoot.zip"
 IDENTITY="${SNOOT_SIGN_IDENTITY:-}"
 PROFILE="${SNOOT_NOTARY_PROFILE:-}"
+ICON_SOURCE="$ROOT/assets/snoot-icon-imagegen-source.png"
 
 mkdir -p dist
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
@@ -50,7 +51,11 @@ cat >"$INFO_PLIST" <<'EOF'
 </plist>
 EOF
 
-tools/generate_snoot_assets.py
+if [[ -f "$ICON_SOURCE" ]]; then
+  tools/import_snoot_icon.py "$ICON_SOURCE"
+else
+  tools/generate_snoot_assets.py
+fi
 
 clang -fobjc-arc -fno-modules -framework Cocoa PocketDragonNative.m -o "$EXECUTABLE"
 "$EXECUTABLE" --export-landing-sprites landing
