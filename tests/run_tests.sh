@@ -13,9 +13,9 @@ test -s "landing/snoot-walk-0.png"
 test -s "landing/snoot-walk-1.png"
 test -s "landing/snoot-walk-2.png"
 test -s "landing/snoot-walk-3.png"
-test -s "github-pages/index.html"
-test -s "github-pages/Snoot.zip"
-test -s "github-pages/snoot-mark.png"
+test -s "dist/github-pages/index.html"
+test -s "dist/github-pages/Snoot.zip"
+test -s "dist/github-pages/snoot-mark.png"
 test -s "assets/snoot-icon-template.png"
 
 rg -q 'URLByAppendingPathComponent:@"Snoot"' PocketDragonNative.m
@@ -31,9 +31,9 @@ rg -q 'NSMaxY\(self.screenFrame\) \+ 12\.0' PocketDragonNative.m
 rg -q 'Snoot' landing/index.html
 rg -q '../dist/Snoot.zip' landing/index.html
 rg -q 'snoot-walker' landing/index.html
-rg -q 'href="Snoot.zip"' github-pages/index.html
-if rg -q '../dist/Snoot.zip' github-pages/index.html; then
-  echo "github-pages/index.html should use local Snoot.zip link" >&2
+rg -q 'href="Snoot.zip"' dist/github-pages/index.html
+if rg -q '../dist/Snoot.zip' dist/github-pages/index.html; then
+  echo "dist/github-pages/index.html should use local Snoot.zip link" >&2
   exit 1
 fi
 
